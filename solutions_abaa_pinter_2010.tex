@@ -1,0 +1,218 @@
+\documentclass[11pt, b5paper, draft, fleqn]{book}
+\usepackage[inner=2.00cm, outer=2.0cm, top=2.0cm, bottom=2.0cm]{geometry}
+%
+%
+\usepackage[english]{babel}
+%
+%
+\usepackage{amsmath}
+\usepackage{amsfonts}
+%\usepackage{amssymb}
+\usepackage{amsthm}
+
+\theoremstyle{remark}
+\newtheorem*{solution}{Solution}
+
+%-----------------Grabkiste nach Beweisen-------%
+\renewcommand{\qedsymbol}{\(\hfill\blacksquare\)}
+%
+%
+\usepackage[T1]{fontenc}
+%\usepackage{tgschola}
+\usepackage{stickstootext}
+\usepackage[stickstoo,vvarbb]{newtxmath}
+%
+%
+\usepackage{graphicx}
+\usepackage{color}
+%
+%
+\usepackage{extramarks}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linktoc=all,
+	linkcolor=blue,
+	pdftoolbar=true,
+	bookmarks=true,
+	bookmarksnumbered=true
+}
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{15.2pt}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\pagestyle{fancy}
+%
+%
+\usepackage{enumitem}
+\setlist[enumerate, 1]{label=\thesection.\arabic*}
+\setlist[enumerate, 2]{label=(\arabic*)}
+\setlist[enumerate, 3]{label=\arabic*}
+
+\newlist{rome}{enumerate}{1}
+\setlist[rome]{label=\Roman*., align=right}
+
+\newlist{alphbet}{enumerate}{1}
+\setlist[alphbet]{label=\alph*.}
+
+\begin{document}
+\begin{titlepage}	
+	\begin{center}
+	
+	\huge
+	\textbf{Solutions Manual}
+    
+	\vspace{2em}
+	\Large
+	\textbf{A Book of Abstract Algebra - 2nd Edition}
+    
+	Charles C. Pinter
+	
+	\vspace{2em}
+	\large
+	\textbf{This solution manual was created by the MathLearners study group.}
+	
+	\end{center}
+\end{titlepage}
+
+\fancyhf{}
+\cleardoublepage
+\pagenumbering{Roman}
+\setcounter{page}{3}
+\tableofcontents
+
+\cleardoublepage
+
+\fancyhf{}
+\pagenumbering{arabic}
+\setcounter{page}{5}
+\rhead{\thepage}
+\lhead{\firstleftmark}
+
+\chapter{Operations}
+\section{A: Examples of Operations}
+\begin{enumerate}
+    \item[3]
+	\(a * b\) is a root of the equation \(x^2-a^2b^2 = 0\), on the set \(\mathbb{R}\).
+	\begin{solution}
+		From \(x^2-a^2b^2 = 0\) we get \(x^2=a^2b^2\), so \(\pm ab\) is a root, which means it's not unique. Thus \(a * b\) is not an operation on \(\mathbb{R}\).
+	\end{solution}
+	\item[5]
+	Subtraction, on the set \(\{n \in \mathbb{Z} | n \geq 0\}\).
+	\begin{solution}
+		Subtraction is not an operation on that set, because if we have \(k, l \in \mathbb{Z}_{\geq0}\), where \(l > k\), we get a negative result, which would not be in \(\mathbb{Z}_{\geq0}\).
+	\end{solution}
+\end{enumerate}
+\section{B: Properties of Operations}
+\begin{enumerate}
+	\item[1] \(x * y = x + 2y + 4\)
+	\begin{solution}
+	We follow the steps from the example.
+	\begin{rome}
+		\item Commutative: \(x * y = x + 2y + 4\); \(y * x = y + 2x +4\). Thus \(x * y\) is not commutative.
+		\item Associative: \(x * (y * z) = x*(y + 2z +4) = x + 2(y + 2z + 4) + 4\) \\ \((x * y) * z = (x + 2y + 4) * z = x + 2y + 4 + 2z\). Thus \(x * y\) is not associative.
+		\item Solve \(x * e = x\) for \(e\).
+		\begin{equation*}
+		\begin{split}
+			x * e & = x \\
+			x + 2e + 4 & = x \\
+			4 & = - 2e \\
+			-2 & = e.
+		\end{split}
+		\end{equation*}
+		\item Solve \(x * x' = e\) for \(x'\).
+		\begin{equation*}
+		\begin{split}
+			x * x' & = e \\
+			x + 2x' + 4 & = e \\
+			x + 2x' + 4 & = -2 \\
+			x + 2x' & = -6 \\
+			2x' & = -6 - x \\
+			x' & = -\frac{6+x}{2}.
+		\end{split}
+		\end{equation*}
+	\end{rome}
+	\end{solution}
+	\item[2] \(x * y = x + 2y - xy\)
+	\begin{solution}
+	We follow the steps from the example.
+	\begin{rome}
+		\item Commutative:
+		\begin{equation*}
+		\begin{split}
+			x * y = x + 2y - xy \\
+			y * x = y + 2x - yx. \\
+		\end{split}
+		\end{equation*}
+		Thus \(x * y\) is not commutative.
+		
+		\item Associative:
+		\begin{equation*}
+		\begin{split}
+			x * (y * z) & = x * (y + 2z - yz) = x + 2(y + 2z - yz) - x(y + 2z - yz) \\
+			(x * y) * z & = (x + 2y - xy) * z = x + 2y - xy + 2z - (x + 2y - xy)z.
+		\end{split}
+		\end{equation*}
+		Thus \(x * y\) is not associative.
+		
+		\item Solve \(x * e = x\) for \(e\).
+		\begin{equation*}
+		\begin{split}
+			x * e & = x \\
+			x + 2e - xe & = x \\
+			2e - xe & = 0 \\
+			e(2 - x) & = 0 \\
+			e & = 0.
+		\end{split}
+		\end{equation*}
+		Check that it works: \(x * 0 = x + 2 \cdot 0 - x \cdot 0 = x + 0 - 0 = x\).
+		
+		\item Solve \(x * x' = e\) for \(x'\).
+		\begin{equation*}
+		\begin{split}
+			x * x' & = e \\
+			x + 2x' - xx' & = 0 \\
+			x + x'(2 - x) & = 0 \\
+			x'(2 - x) & = -x \\
+			x' & = -\frac{x}{2 - x}.
+		\end{split}
+		\end{equation*}
+		If \(x = 2\), then the right side is undefined. Thus there is no inverse.
+	\end{rome}
+	\end{solution}
+	\item[3] \(x * y = |x + y|\)
+	\begin{solution}
+	We follow the steps from the example.
+	\begin{rome}
+		\item Commutative:
+		\begin{equation*}
+		\begin{split}
+			x * y & = | x + y | \\
+			y * x & = | y + x | = | x + y |.
+		\end{split}
+		\end{equation*}
+		Thus \(x * y\) is commutative.
+		
+		\item Associative:
+		\begin{equation*}
+		\begin{split}
+			x * (y * z) = x * | y + z | = \bigl| x + | y + z | \bigr| \\
+			(x * y) * z = | x + y | * z = \bigl||x + y | + z \bigr|
+		\end{split}
+		\end{equation*}
+		Let \(x = 2, y = -2\) and \(z = 0\). Then \(x * (y * z) = 2 * (-2 * 0) = \bigl| 2 + | -2 + 0 |\bigr| = | 2 + 2 | = 4.\) But \((x * y) * z = (2 * -2) * 0 = \bigl||2 + (-2)| + 0 \bigr| = |0 + 0 | = 0.\) Thus \(x * y\) is not associative.
+		
+		\item Solve \(x * e = x\) for \(e\).
+		\begin{equation*}
+		\begin{split}
+			x * e & = x \\
+			| x + e | & = x.
+		\end{split}
+		\end{equation*}
+		But if \(x < 0\), then the right side is negative, but the left side is nonnegative, which is a contradiction. Thus there is no identity element.
+	\end{rome}
+	\end{solution}
+\end{enumerate}
+\end{document}
