@@ -12,6 +12,11 @@
 
 \theoremstyle{remark}
 \newtheorem*{solution}{Solution}
+\newtheorem*{prop}{Proposition}
+\newtheorem{propnum}{Proposition}
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
 
 %-----------------Grabkiste nach Beweisen-------%
 \renewcommand{\qedsymbol}{\(\hfill\blacksquare\)}
@@ -90,9 +95,11 @@
 \setcounter{page}{5}
 \rhead{\thepage}
 \lhead{\firstleftmark}
+\sloppy
 
+\setcounter{chapter}{1}
 \chapter{Operations}
-\section{A: Examples of Operations}
+\section*{A: Examples of Operations}
 \begin{enumerate}
     \item[3]
 	\(a * b\) is a root of the equation \(x^2-a^2b^2 = 0\), on the set \(\mathbb{R}\).
@@ -105,7 +112,8 @@
 		Subtraction is not an operation on that set, because if we have \(k, l \in \mathbb{Z}_{\geq0}\), where \(l > k\), we get a negative result, which would not be in \(\mathbb{Z}_{\geq0}\).
 	\end{solution}
 \end{enumerate}
-\section{B: Properties of Operations}
+
+\section*{B: Properties of Operations}
 \begin{enumerate}
 	\item[1] \(x * y = x + 2y + 4\)
 	\begin{solution}
@@ -214,5 +222,155 @@
 		But if \(x < 0\), then the right side is negative, but the left side is nonnegative, which is a contradiction. Thus there is no identity element.
 	\end{rome}
 	\end{solution}
+\end{enumerate}
+
+
+\chapter{The Definition of Groups}
+\section*{C: Groups of Subsets of a Set}
+\begin{enumerate}
+	\item[1] Prove that there is an identity element with respect to the operation +, which is \(\emptysetAlt\).
+	\begin{proof}
+		Let \(A\) be any element of \(\mathcal{P}(D)\). Then \(A + \emptysetAlt = (A - \emptysetAlt) \cup (\emptysetAlt - A) = A \cup \emptysetAlt = A.\) Thus \(\emptysetAlt\) is the identity element.
+	\end{proof}
+	
+	\item[2] Prove every subset \(A\) of \(D\) has an inverse with respect to +, which is \(A\).
+	\begin{proof}
+		Let \(A\) be any subset of \(D\). Then \(A + A = (A - A) \cup (A - A) = \emptysetAlt \cup \emptysetAlt = \emptysetAlt.\) Thus \(A\) is the inverse of \(A\).
+	\end{proof}
+\end{enumerate}
+
+\section*{D: A Checkerboard Game}
+\begin{enumerate}
+	\item[1] Write the table of \(G\).
+	\begin{solution}
+		See table below: \\
+		\begin{center}
+		\begin{tabular}{c | c c c c}
+			\(*\) & \(V\) & \(H\) & \(D\) & \(I\) \\
+			\hline
+			\(V\) & \(I\) & \(D\) & \(H\) & \(V\) \\
+			\(H\) & \(D\) & \(I\) & \(V\) & \(H\) \\
+			\(D\) & \(H\) & \(V\) & \(I\) & \(D\) \\
+			\(I\) & \(V\) & \(H\) & \(D\) & \(I\)
+		\end{tabular}
+		\end{center}
+	\end{solution}
+	
+	\item[2] Granting associativity, eplain why \(\langle G, *\rangle\) is a group.
+	\begin{solution}
+		Assuming associativity, we only have to show that there exists an identity element and an inverse.
+		
+		\begin{propnum}
+			The identity element of \(G\) is \(I\).
+		\end{propnum}
+		\begin{proof}
+			Let \(X\) be any element of \(G\). Then \(X * I = X\) and \(I * X = X\). Thus \(I\) is the identity element of \(G\).
+		\end{proof}
+		
+		\begin{propnum}
+			For any element \(X\) of \(G\), the inverse is \(X\).
+		\end{propnum}
+		\begin{proof}
+			Let \(X\) be any element of \(G\). Obersve that \(X * X = I\) and \(X * X = I\). Thus \(X\) is the inverse of \(X\).
+		\end{proof}
+	\end{solution}
+	
+	We also note that \(G\) is an abelian group, since changing the order of the operands doesn't change the result (i.e. \(D * V = V * D = H\)).
+\end{enumerate}
+
+\section*{E: A Coin Game}
+\begin{enumerate}
+	\item[1] If \(G = \{I, M_1, ..., M_7\}\) and \(*\) is the operation we have just defined, write the table of \(\langle G, * \rangle\).
+	\begin{solution}
+		See table below: \\
+		\begin{center}
+		\begin{tabular}{ c | c c c c c c c c }
+			\(I\) & \(I\) & \(M_1\) & \(M_2\) & \(M_3\) & \(M_4\) & \(M_5\) & \(M_6\) & \(M_7\) \\
+			\hline
+			\(I\) & \(I\) & \(M_1\) & \(M_2\) & \(M_3\) & \(M_4\) & \(M_5\) & \(M_6\) & \(M_7\) \\
+			\(M_1\) & \(M_1\) & \(I\) & \(M_3\) & \(M_2\) & \(M_5\) & \(M_4\) & \(M_7\) & \(M_6\) \\
+			\(M_2\) & \(M_2\) & \(M_3\) & \(I\) & \(M_1\) & \(M_6\) & \(M_7\) & \(M_4\) & \(M_5\) \\
+			\(M_3\) & \(M_3\) & \(M_2\) & \(M_1\) & \(I\) & \(M_7\) & \(M_6\) & \(M_5\) & \(M_4\) \\
+			\(M_4\) & \(M_4\) & \(M_6\) & \(M_5\) & \(M_7\) & \(I\) & \(M_2\) & \(M_1\) & \(M_3\) \\
+			\(M_5\) & \(M_5\) & \(M_7\) & \(M_4\) & \(M_6\) & \(M_1\) & \(M_3\) & \(I\) & \(M_2\) \\
+			\(M_6\) & \(M_6\) & \(M_4\) & \(M_7\) & \(M_5\) & \(M_2\) & \(I\) & \(M_3\) & \(M_1\) \\
+			\(M_7\) & \(M_7\) & \(M_5\) & \(M_6\) & \(M_4\) & \(M_3\) & \(M_1\) & \(M_2\) & \(I\)
+		\end{tabular}
+		\end{center}
+	\end{solution}
+	
+	\item[2] Granting associativity, eplain why \(\langle G, * \rangle\) is a group. Is it commutative? If not, show why not.
+	\begin{solution}
+		As can be seen from the operation table, there exists an identity element, namely \(I\), and every element has an inverse. But \(G\) is not abelianc, since \(M_4 * M_5 = M_2\), but \(M_5 * M_4 = M_1\).
+	\end{solution}
+\end{enumerate}
+
+\section*{F: Groups in Binary Codes}
+\begin{enumerate}
+	\item[1] Show that \((a_1, a_2, ..., a_n) + (b_1, b_2, ..., b_n) = (b_1, b_2, ..., b_n) + (a_1, a_2, ..., a_n).\)
+	\begin{proof}
+		We use induction and start with the base case:
+		\begin{rome}
+			\item \(0 + 1 = 1 = 1 + 0\), and \\
+			\(0 + 0 = 0 = 1 + 1.\)
+			\item Assume that \((a_1, a_2, ..., a_k) + (b_1, b_2, ..., b_k) = (b_1, b_2, ..., b_k) + (a_1, a_2, ..., a_k)\) for \(k \leq n\). Observe that \((a_1, a_2, ..., a_k, a_{k+1}) + (b_1, b_2, ..., b_k, b_{k+1}) = (b_1 + a_1, b_2 + a_2, ..., b_k + a_k, a_{k+1} + b_{k+1})\). Thus we have to show that \(a_{k+1} + b_{k+1} = b_{k+1} + a_{k+1}\). Since \(a_{k+1}\) can be either 0 or 1, and \(b_{k+1}\) can also be either 0 or 1, we refer to the base case to conclude that \(a_{k+1} + b_{k+1} = b_{k+1} + a_{k+1}\). Thus we have \((a_1, a_2, ..., a_k, a_{k+1}) + (b_1, b_2, ..., b_k, b_{k+1}) = (b_1, b_2, ..., b_k, b_{k+1}) + (a_1, a_2, ..., a_k, a_{k+1})\).
+		\end{rome}
+		This completes our proof that \((a_1, a_2, ..., a_n) + (b_1, b_2, ..., b_n) = (b_1, b_2, ..., b_n) + (a_1, a_2, ..., a_n)\).
+	\end{proof}
+	
+	\item[2] Check the remaining six cases:
+	\begin{solution}
+	\begin{align*}
+		1 + (0 + 1) = 1 + 1 = 0 = 1 + 1 = (1 + 0) + 1 \\
+		1 + (0 + 0) = 1 + 0 = 1 = 1 + 0 = (1 + 0) + 0 \\
+		0 + (1 + 1) = 0 + 0 = 0 = 1 + 1 = (0 + 1) + 1 \\
+		0 + (1 + 0) = 0 + 1 = 1 = 1 + 0 = (0 + 1) + 0 \\
+		0 + (0 + 1) = 0 + 1 = 1 = 0 + 1 = (0 + 0) + 1 \\
+		0 + (0 + 0) = 0 + 0 = 0 = 0 + 0 = (0 + 0) + 0
+	\end{align*}
+	\end{solution}
+	
+	\item[3] Show that \((a_1, ..., a_n) + \left[(b_1, ..., b_n) + (c_1, ..., c_n)\right] = \left[(a_1, ..., a_n) + (b_1, ..., b_n)\right] + (c_1, ..., c_n)\).
+	\begin{proof}
+		We use proof by induction and start with the base case.
+		\begin{rome}
+			\item See exercise 2.
+			\item Assume \((a_1, ..., a_k) + \left[(b_1, ..., b_k) + (c_1, ..., c_k)\right] = \left[(a_1, ..., a_k) + (b_1, ..., b_k)\right] + (c_1, ..., c_k)\) for \(k \leq n\). Observe that the first \(k\) digits in \((a_1, ..., a_k, a_{k+1}) + \left[(b_1, ..., b_k, b_{k+1}) + (c_1, ..., c_k, c_{k+1})\right]\) are associative, which means whe only have to show that \(a_{k+1} + (b_{k+1} + c_{k+1}) = (a_{k+1} + b_{k+1}) + c_{k+1}\) is true. And since we have shown in the base case that any binary word of length 1 is associative, we conclude that \(a_{k+1} + (b_{k+1} + c_{k+1}) = (a_{k+1} + b_{k+1}) + c_{k+1}\) holds, and thus \((a_1, ..., a_k, a_{k+1}) + \left[(b_1, ..., b_k, b_{k+1}) + (c_1, ..., c_k, c_{k+1})\right] = \left[(a_1, ..., a_k, a_{k+1}) + (b_1, ..., b_k, b_{k+1})\right] + (c_1, ..., c_k, c_{k+1})\).
+		\end{rome}
+		This completes our proof that addition of binary words is associative.
+	\end{proof}
+	
+	\item[6] Show that \(A + B = A - B\), [where \(A - B = A + (-B)\)].
+	\begin{proof}
+		Observe that:
+		\begin{equation*}
+		\begin{split}
+			A & = A \\
+			& = A + \mathbb{0} \\
+			& = A + (B + B) \\
+			& = (A + B) + B \\
+			A + (-B) & = (A + B) + B + (-B) \\
+			& = (A + B) + (B - B) \\
+			& = (A + B) + \mathbb{0} \\
+			A - B & = A + B.
+		\end{split}
+		\end{equation*}
+		This completes our proof that \(A + B = A - B\).
+	\end{proof}
+	
+	\item[7] If \(A + B = C\), show that \(A = B + C\).
+	\begin{proof}
+		Observe that:
+		\begin{equation*}
+		\begin{split}
+			A + B & = C \\
+			(A + B) + B & = C + B \\
+			A + (B + B) & = \\
+			A + \mathbb{0} & = \\
+			A & = B + C.
+		\end{split}
+		\end{equation*}
+		This completes our proof that \(A + B = C\) implies \(A = B + C\).
+	\end{proof}
 \end{enumerate}
 \end{document}
