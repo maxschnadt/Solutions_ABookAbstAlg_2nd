@@ -6,7 +6,7 @@
 %
 %
 \usepackage{amsmath}
-\usepackage{amsfonts}
+%\usepackage{amsfonts}
 %\usepackage{amssymb}
 \usepackage{amsthm}
 
@@ -23,13 +23,14 @@
 %
 %
 \usepackage[T1]{fontenc}
-%\usepackage{tgschola}
 \usepackage{stickstootext}
 \usepackage[stickstoo,vvarbb]{newtxmath}
+\usepackage{eucal}
 %
 %
 \usepackage{graphicx}
 \usepackage{color}
+\usepackage{framed}
 %
 %
 \usepackage{extramarks}
@@ -371,6 +372,118 @@
 		\end{split}
 		\end{equation*}
 		This completes our proof that \(A + B = C\) implies \(A = B + C\).
+	\end{proof}
+\end{enumerate}
+
+\section*{G: Theory of Coding: Maximum-Likelihood Decoding}
+\begin{enumerate}
+	\item[] The code, which we shall call \(\mathcal{C}_1\), consists of the following binary words of length 5: \\
+	\begin{center}
+	\begin{tabular}{ c c c c c}
+		0 & 0 & 0 & 0 & 0 \\
+		0 & 0 & 1 & 1 & 1 \\
+		0 & 1 & 0 & 0 & 1 \\
+		0 & 1 & 1 & 1 & 0 \\
+		1 & 0 & 0 & 1 & 1 \\
+		1 & 0 & 1 & 0 & 0 \\
+		1 & 1 & 0 & 1 & 0 \\
+		1 & 1 & 1 & 0 & 1
+	\end{tabular}
+	\end{center}
+	
+	\item[1] Verify that every codeword \(a_1 a_2 a_3 a_4 a_5\) in \(\mathcal{C}_1\) satisfies the following two parity-check equations: \(a_4 = a_1 + a_3\) and \(a_5 = a_1 + a_2 + a_3\).
+	\begin{solution}
+		See the table below:
+		\begin{center}
+		\begin{tabular}{ c | c c}
+			& \(a_4\) & \(a_5\) \\
+			\hline
+			000 & \(0 + 0 = 0\) & \(0 + 0 + 0 = 0 + 0 = 0\) \\
+			001 & \(0 + 1 = 1\) & \(0 + 0 + 1 = 0 + 1 = 1\) \\
+			010 & \(0 + 0 = 0\) & \(0 + 1 + 0 = 1 + 0 = 1\) \\
+			011 & \(0 + 1 = 1\) & \(0 + 1 + 1 = 1 + 1 = 0\) \\
+			100 & \(1 + 0 = 1\) & \(1 + 0 + 0 = 1 + 0 = 1\) \\
+			101 & \(1 + 1 = 0\) & \(1 + 0 + 1 = 1 + 1 = 0\) \\
+			110 & \(1 + 0 = 1\) & \(1 + 1 + 0 = 0 + 0 = 0\) \\
+			111 & \(1 + 1 = 0\) & \(1 + 1 + 1 = 0 + 1 = 1\)
+		\end{tabular}
+		\end{center}
+	\end{solution}
+	
+	\item[2] Let \(\mathcal{C}_2\) be the following code in \(\mathbb{B}^6\). The first three positions are the information positions, and every codeword \(a_1 a_2 a_3 a_4 a_5 a_6\) satisfies the parity-check equations \(a_4 = a_2\), \(a_5 = a_1 + a_2\) and \(a_6 = a_1 + a_2 + a_3\).
+	\begin{alphbet}
+		\item List the codewords of \(\mathcal{C}_2\).
+		\begin{solution}
+			See the table below:
+			\begin{center}
+			\begin{tabular} { c c c c c c}
+				0 & 0 & 0 & 0 & 0 & 0 \\
+				0 & 0 & 1 & 0 & 0 & 1 \\
+				0 & 1 & 0 & 1 & 1 & 1 \\
+				0 & 1 & 1 & 1 & 1 & 0 \\
+				1 & 0 & 0 & 0 & 1 & 1 \\
+				1 & 0 & 1 & 0 & 1 & 0 \\
+				1 & 1 & 0 & 1 & 0 & 0 \\
+				1 & 1 & 1 & 1 & 0 & 1
+			\end{tabular}
+			\end{center}
+		\end{solution}
+		
+		\item Find the minimum distance of the code \(\mathcal{C}_2\).
+		\begin{solution}
+			The minimum distance is 2.
+		\end{solution}
+		
+		\item How many errors in any codeword of \(\mathcal{C}_2\) are sure to be detected? Explain.
+		\begin{solution}
+			We can be sure to detect at most one error in any codeword, since the minimum distance is 2. If we have 2 or more errors, the resulting binary word might be a codeword, in which case we can't determine that the received word contains an error, since it is valid.
+		\end{solution}
+	\end{alphbet}
+	
+	\item[3] Design a code in \(\mathbb{B}^4\) where the first two positions are information positions. Give the parity-check equations, list the codewords, and find the minimum distance.
+	\begin{solution}
+		Let \(a_3 = a_2\) and \(a_4 = a_1 + a_2\). Then the code \(\mathcal{C}_3\) has the following table: \\
+		\begin{center}
+		\begin{tabular}{ c c c c}
+			0 & 0 & 0 & 0 \\
+			0 & 1 & 1 & 1 \\
+			1 & 0 & 0 & 1 \\
+			1 & 1 & 1 & 0 
+		\end{tabular}
+		\end{center}
+		
+		\noindent
+		The minimum distance is 2.
+	\end{solution}
+	
+	\item[4] Decode the following words in \(\mathcal{C}_1\): 11111, 00101, 11000, 10011, 10001, and 10111.
+	\begin{solution}
+		The words are decoded as follows:
+		\begin{align*}
+			11111 & \rightarrow 11101 \\
+			00101 & \rightarrow 00111 \\
+			11000 & \rightarrow 11010 \\
+			10011 & \rightarrow 10011 \\
+			10001 & \rightarrow 10011 \\
+			10111 & \rightarrow 10011 \text{ or } 00111
+		\end{align*}
+	\end{solution}
+	
+	\item[NOTE:] Let \(\mathcal{C}\) be a code in \(\mathbb{B}^n\), \(m\) the minimum distance in \(\mathcal{C}\), and \(A\) and \(B\) be codewords in \(\mathcal{C}\).
+	
+	\item[5] Prove that it is possible to detect up to \(m-1\) errors. (That is, if there are errors of transmission in \(m-1\) or fewer positions of a codeword, it can always be determined that the received word is incorrect.)
+	\begin{proof}
+		We will use indirect proof. Thus assume we can't always determine that the received word is incorrect. This implies that the received word could be determined to be a correct one, which means the received word must be a codeword. Since we have a minimum distance of \(m\) between any two codewords, and only codewords are sent, there must have been errors in \(m\) or more positions. This completes our proof that we can always detect up to \(m-1\) errors.
+	\end{proof}
+	
+	\item[6] By the sphere of radius \(k\) about a codeword \(A\) we mean the set of all words in \(\mathbb{B}^n\) whose distance from \(A\) is no greater than \(k\). This set is denoted by \(S_k(A)\); hence \(S_k(A) = \{X \ | \ d(A, X) \leq k\}\). If \(t = \frac{1}{2}(m-1)\), prove that any two spheres of radius \(t\), say \(S_t(A)\) and \(S_t(B)\), have no elements in common.
+	\begin{proof}
+		We use proof by contradiction. Thus assume \(t = \frac{1}{2}(m-1)\) and also assume that \(S_t(A)\) and \(S_t(B)\) have at least one element in common. Let \(W\) be that element. Thus \(d(A, W) \leq \frac{1}{2}(m-1)\) and \(d(B, W) \leq \frac{1}{2}(m-1)\), but also \(d(A, B) \geq m\). This implies that \(d(A, W) + d(B, W) \leq \frac{1}{2}(m-1) + \frac{1}{2}(m-1) = \frac{2}{2}(m-1) = m-1 \). But \(d(A, B) \leq d(A, W) + d(B, W)\), so \(m \leq d(A, B) \leq m-1\), which is a contradiction. This completes our proof.
+	\end{proof}
+	
+	In our last proof, we assumed that \(d(A, B) \geq d(A, W) + d(B, W)\) for all \(A, B, W\), which could be called the triangle inequality of binary words. We will now prove this inequality.
+	\begin{proof}
+		Let \(A, B, W\) be any three binary words of length \(n\). Let \(A\) and \(B\) differ in \(t\) positions and match in \(s\) positions. Then \(W\) can at best match \(A\) and \(B\) in \(s\) positions and has to differ from \(A\) or \(B\) in \(t\) positions. In this case \(d(A, B) = d(A, W) + d(B, W)\). In all other cases, \(W\) will differ from \(A\) or \(B\) in \(t+1\) or more positions, which implies \(d(A,B) < d(A, W) + d(B, W)\). Thus \(d(A, B) \leq d(A, W) + d(B, W)\), which completes our proof.
 	\end{proof}
 \end{enumerate}
 \end{document}
